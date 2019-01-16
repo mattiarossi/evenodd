@@ -41,8 +41,35 @@ class Evenodd_ProcessList
         // Processors that write or update a feed are not supported and hidden from the gui on the context of virtual feeds.
 
         // 0=>Name | 1=>Arg type | 2=>function | 3=>No. of datafields if creating feed | 4=>Datatype | 5=>Group | 6=>Engines | 'desc'=>Description | 'requireredis'=>true | 'nochange'=>true  | 'helpurl'=>"http://..."
-        $list[] = array("If ODD", ProcessArg::NONE, "if_odd", 0, DataType::UNDEFINED, "Conditional",'nochange'=>true, 'desc'=>"");
-        $list[] = array("If EVEN", ProcessArg::NONE, "if_even", 0, DataType::UNDEFINED, "Conditional",'nochange'=>true, 'desc'=>"");
+
+        $list = array(
+            array(
+              "name"=>_("If ODD, skip next"),
+              "short"=>"?ODD",
+              "argtype"=>ProcessArg::NONE,
+              "function"=>"if_odd",
+              "datafields"=>0,
+              "datatype"=>DataType::UNDEFINED,
+              "unit"=>"",
+              "group"=>_("Conditional - Event"),
+              "requireredis"=>false,
+              "nochange"=>true,
+              "description"=>_("<p>If value from last process has an odd value, processlist execution will skip the next process.</p>")
+           ),
+           array(
+              "name"=>_("If EVEN, skip next"),
+              "short"=>"?EVEN",
+              "argtype"=>ProcessArg::NONE,
+              "function"=>"if_even",
+              "datafields"=>0,
+              "datatype"=>DataType::UNDEFINED,
+              "unit"=>"",
+              "group"=>_("Conditional - Event"),
+              "requireredis"=>false,
+              "nochange"=>true,
+              "description"=>_("<p>If value from last process has an even value, processlist execution will skip the next process.</p>")
+           )       
+        );
         return $list;
     }
 
